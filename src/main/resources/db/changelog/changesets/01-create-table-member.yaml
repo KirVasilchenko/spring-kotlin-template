@@ -2,13 +2,13 @@ databaseChangeLog:
   -  preConditions:
       - not:
           - tableExists:
-              tableName: user
+              tableName: member
   -  changeSet:
-       id:  create-user-table
+       id:  create-member-table
        author:  kirvasilchenko
        changes:
          -  createTable:
-              tableName:  user
+              tableName:  member
               columns:
                 -  column:
                      name: id
