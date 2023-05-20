@@ -6,7 +6,7 @@ import com.github.kirvasilchenko.springkotlintemplate.repository.MemberRepositor
 import com.github.kirvasilchenko.springkotlintemplate.service.MemberService
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
-import java.util.*
+import java.util.UUID
 import kotlin.NoSuchElementException
 
 @Service

@@ -2,7 +2,7 @@ package com.github.kirvasilchenko.springkotlintemplate.service
 
 import com.github.kirvasilchenko.springkotlintemplate.dto.MemberDTO
 import com.github.kirvasilchenko.springkotlintemplate.model.Member
-import java.util.*
+import java.util.UUID
 
 
 interface MemberService {
