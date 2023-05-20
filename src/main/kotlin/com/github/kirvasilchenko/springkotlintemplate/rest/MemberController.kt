@@ -1,7 +1,7 @@
 package com.github.kirvasilchenko.springkotlintemplate.rest
 
-import com.github.kirvasilchenko.springkotlintemplate.dto.MemberDTO
-import com.github.kirvasilchenko.springkotlintemplate.model.Member
+import com.github.kirvasilchenko.springkotlintemplate.dto.MemberRequestDTO
+import com.github.kirvasilchenko.springkotlintemplate.dto.MemberResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.service.MemberService
 import io.swagger.v3.oas.annotations.tags.Tag
 import lombok.RequiredArgsConstructor
@@ -26,22 +26,22 @@ class MemberController(
 ) {
 
     @GetMapping
-    fun getAllMembers(): List<Member> {
+    fun getAllMembers(): List<MemberResponseDTO> {
         return memberService.getAllMembers()
     }
 
     @GetMapping("/{id}")
-    fun getMemberById(@PathVariable id: UUID): Member {
+    fun getMemberById(@PathVariable id: UUID): MemberResponseDTO {
         return memberService.getMemberById(id)
     }
 
     @PostMapping
-    fun createMember(@RequestBody memberDTO: MemberDTO): Member {
+    fun createMember(@RequestBody memberDTO: MemberRequestDTO): MemberResponseDTO {
         return memberService.createMember(memberDTO)
     }
 
     @PutMapping("/{id}")
-    fun updateMember(@PathVariable id: UUID, @RequestBody memberDTO: MemberDTO): Member {
+    fun updateMember(@PathVariable id: UUID, @RequestBody memberDTO: MemberRequestDTO): MemberResponseDTO {
         return memberService.updateMember(id, memberDTO)
     }
 

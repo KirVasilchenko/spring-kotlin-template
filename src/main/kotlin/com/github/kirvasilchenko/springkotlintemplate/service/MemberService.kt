@@ -1,19 +1,19 @@
 package com.github.kirvasilchenko.springkotlintemplate.service
 
-import com.github.kirvasilchenko.springkotlintemplate.dto.MemberDTO
-import com.github.kirvasilchenko.springkotlintemplate.model.Member
+import com.github.kirvasilchenko.springkotlintemplate.dto.MemberRequestDTO
+import com.github.kirvasilchenko.springkotlintemplate.dto.MemberResponseDTO
 import java.util.UUID
 
 
 interface MemberService {
 
-    fun getAllMembers(): List<Member>
+    fun getAllMembers(): List<MemberResponseDTO>
 
-    fun getMemberById(id: UUID): Member
+    fun getMemberById(id: UUID): MemberResponseDTO
 
-    fun createMember(memberDTO: MemberDTO): Member
+    fun createMember(memberDTO: MemberRequestDTO): MemberResponseDTO
 
-    fun updateMember(id: UUID, memberDTO: MemberDTO): Member
+    fun updateMember(id: UUID, memberDTO: MemberRequestDTO): MemberResponseDTO
 
     fun deleteMember(id: UUID): Unit
 
