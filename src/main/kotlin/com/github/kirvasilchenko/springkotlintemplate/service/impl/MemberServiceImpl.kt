@@ -2,6 +2,7 @@ package com.github.kirvasilchenko.springkotlintemplate.service.impl
 
 import com.github.kirvasilchenko.springkotlintemplate.dto.MemberRequestDTO
 import com.github.kirvasilchenko.springkotlintemplate.dto.MemberResponseDTO
+import com.github.kirvasilchenko.springkotlintemplate.exception.MemberNotFoundException
 import com.github.kirvasilchenko.springkotlintemplate.mapper.MemberMapper
 import com.github.kirvasilchenko.springkotlintemplate.model.Member
 import com.github.kirvasilchenko.springkotlintemplate.repository.MemberRepository
@@ -25,7 +26,7 @@ class MemberServiceImpl(
 
     override fun getMemberById(id: UUID): MemberResponseDTO {
         return mapper.map(memberRepository.findById(id).orElseThrow {
-            NoSuchElementException("Member with id $id not found")
+            MemberNotFoundException()
         })
     }
 
@@ -40,7 +41,7 @@ class MemberServiceImpl(
 
     override fun updateMember(id: UUID, memberDTO: MemberRequestDTO): MemberResponseDTO {
         val existingMember = memberRepository.findById(id).orElseThrow {
-            NoSuchElementException("Member with id $id not found")
+            MemberNotFoundException()
         }
         val updatedMember = Member(
             id = existingMember.id,
@@ -50,7 +51,7 @@ class MemberServiceImpl(
         return mapper.map(memberRepository.save(updatedMember))
     }
 
-    override fun deleteMember(id: UUID): Unit {
+    override fun deleteMember(id: UUID) {
         memberRepository.deleteById(id)
     }
 
