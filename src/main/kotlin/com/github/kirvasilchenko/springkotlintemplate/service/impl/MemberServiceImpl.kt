@@ -5,6 +5,7 @@ import com.github.kirvasilchenko.springkotlintemplate.dto.MemberRequestDTO
 import com.github.kirvasilchenko.springkotlintemplate.dto.MemberShortResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.exception.MemberNotFoundException
 import com.github.kirvasilchenko.springkotlintemplate.mapper.MemberMapper
+import com.github.kirvasilchenko.springkotlintemplate.model.Member
 import com.github.kirvasilchenko.springkotlintemplate.repository.MemberRepository
 import com.github.kirvasilchenko.springkotlintemplate.service.MemberService
 import lombok.RequiredArgsConstructor
@@ -24,30 +25,29 @@ class MemberServiceImpl(
     }
 
     override fun getMemberById(id: UUID): MemberDetailsResponseDTO {
-        val member = memberRepository.findById(id).orElseThrow {
-            MemberNotFoundException()
-        }
-        return mapper.mapToDetailed(member)
+        return mapper.mapToDetailed(findById(id))
     }
 
     override fun createMember(memberDTO: MemberRequestDTO): MemberDetailsResponseDTO {
-        val newMember = mapper.mapToModel(memberDTO)
-        val savedMember = memberRepository.save(newMember)
-        return mapper.mapToDetailed(savedMember)
+        return saveAndReturn(mapper.mapToModel(memberDTO))
     }
 
     override fun updateMember(id: UUID, memberDTO: MemberRequestDTO): MemberDetailsResponseDTO {
-        val existingMember = memberRepository.findById(id).orElseThrow {
-            MemberNotFoundException()
-        }
-        val updatedMember = mapper.updateWithDto(existingMember, memberDTO)
-        return mapper.mapToDetailed(memberRepository.save(updatedMember))
+        val existingMember = findById(id)
+        return saveAndReturn(mapper.updateWithDto(existingMember, memberDTO))
     }
 
     override fun deleteMember(id: UUID): MemberDetailsResponseDTO {
         memberRepository.deleteSoftById(id)
-        val deletedMember = memberRepository.findByIdOrNull(id) ?: throw MemberNotFoundException()
-        return mapper.mapToDetailed(deletedMember)
+        return mapper.mapToDetailed(findById(id))
+    }
+
+    private fun findById(id: UUID): Member {
+        return memberRepository.findByIdOrNull(id) ?: throw MemberNotFoundException()
+    }
+
+    private fun saveAndReturn(member: Member): MemberDetailsResponseDTO {
+        return mapper.mapToDetailed(memberRepository.save(member))
     }
 
 }
