@@ -1,7 +1,8 @@
 package com.github.kirvasilchenko.springkotlintemplate.rest
 
+import com.github.kirvasilchenko.springkotlintemplate.dto.MemberDetailsResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.dto.MemberRequestDTO
-import com.github.kirvasilchenko.springkotlintemplate.dto.MemberResponseDTO
+import com.github.kirvasilchenko.springkotlintemplate.dto.MemberShortResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.service.MemberService
 import io.swagger.v3.oas.annotations.tags.Tag
 import lombok.RequiredArgsConstructor
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
+import java.util.UUID
 
 @Tag(name = "MEMBERS", description = "Пользователи")
 @RestController
@@ -26,27 +27,27 @@ class MemberController(
 ) {
 
     @GetMapping
-    fun getAllMembers(): List<MemberResponseDTO> {
+    fun getAllMembers(): List<MemberShortResponseDTO> {
         return memberService.getAllMembers()
     }
 
     @GetMapping("/{id}")
-    fun getMemberById(@PathVariable id: UUID): MemberResponseDTO {
+    fun getMemberById(@PathVariable id: UUID): MemberDetailsResponseDTO {
         return memberService.getMemberById(id)
     }
 
     @PostMapping
-    fun createMember(@RequestBody memberDTO: MemberRequestDTO): MemberResponseDTO {
+    fun createMember(@RequestBody memberDTO: MemberRequestDTO): MemberDetailsResponseDTO {
         return memberService.createMember(memberDTO)
     }
 
     @PutMapping("/{id}")
-    fun updateMember(@PathVariable id: UUID, @RequestBody memberDTO: MemberRequestDTO): MemberResponseDTO {
+    fun updateMember(@PathVariable id: UUID, @RequestBody memberDTO: MemberRequestDTO): MemberDetailsResponseDTO {
         return memberService.updateMember(id, memberDTO)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteMember(@PathVariable id: UUID): Unit {
+    fun deleteMember(@PathVariable id: UUID): MemberDetailsResponseDTO {
         return memberService.deleteMember(id)
     }
 

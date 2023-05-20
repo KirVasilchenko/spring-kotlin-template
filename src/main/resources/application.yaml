@@ -11,6 +11,8 @@ jpa:
 spring:
   h2:
     console.enabled: true
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
 springdoc:
   swagger-ui:
     enabled: true

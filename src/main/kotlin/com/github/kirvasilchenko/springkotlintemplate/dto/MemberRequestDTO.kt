@@ -7,5 +7,9 @@ data class MemberRequestDTO(
     @Schema(description = "Имя")
     val firstname: String,
     @Schema(description = "Фамилия")
-    val lastname: String
+    val lastname: String,
+
+    val middlename: String? = null,
+    val phone: String,
+    val email: String,
 )
