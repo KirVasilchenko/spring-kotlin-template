@@ -5,6 +5,7 @@ import com.github.kirvasilchenko.springkotlintemplate.dto.UserRequestDTO
 import com.github.kirvasilchenko.springkotlintemplate.dto.UserShortResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.service.UserService
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
 import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -30,12 +31,12 @@ class UserController(
     }
 
     @PostMapping
-    fun createUser(@RequestBody userDTO: UserRequestDTO): UserDetailsResponseDTO {
+    fun createUser(@Valid @RequestBody userDTO: UserRequestDTO): UserDetailsResponseDTO {
         return userService.createUser(userDTO)
     }
 
     @PutMapping("/{id}")
-    fun updateUser(@PathVariable id: UUID, @RequestBody userDTO: UserRequestDTO): UserDetailsResponseDTO {
+    fun updateUser(@PathVariable id: UUID, @Valid @RequestBody userDTO: UserRequestDTO): UserDetailsResponseDTO {
         return userService.updateUser(id, userDTO)
     }
 

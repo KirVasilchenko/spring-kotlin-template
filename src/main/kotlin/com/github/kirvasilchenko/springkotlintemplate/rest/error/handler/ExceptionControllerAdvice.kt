@@ -4,6 +4,7 @@ import com.github.kirvasilchenko.springkotlintemplate.exception.EntityNotFoundEx
 import com.github.kirvasilchenko.springkotlintemplate.rest.error.ErrorMessageModel
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 
@@ -18,6 +19,11 @@ class ExceptionControllerAdvice {
     @ExceptionHandler
     fun handleEntityNotFoundException(ex: EntityNotFoundException): ResponseEntity<ErrorMessageModel> {
         return ofStatusAndMessage(HttpStatus.NOT_FOUND, ex.message!!)
+    }
+
+    @ExceptionHandler
+    fun handleMethodArgumentNotValidException(ex: MethodArgumentNotValidException): ResponseEntity<ErrorMessageModel> {
+        return ofStatusAndMessage(HttpStatus.BAD_REQUEST, ex.fieldErrors[0].defaultMessage ?: "Unknown reason")
     }
 
     private fun ofStatus(status: HttpStatus): ResponseEntity<ErrorMessageModel> {

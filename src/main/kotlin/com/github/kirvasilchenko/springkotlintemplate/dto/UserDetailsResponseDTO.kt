@@ -1,10 +1,13 @@
 package com.github.kirvasilchenko.springkotlintemplate.dto
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonInclude.Include
 import io.swagger.v3.oas.annotations.media.Schema
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 @Schema(description = "Пользователь. Детальная информация")
+@JsonInclude(Include.NON_NULL)
 data class UserDetailsResponseDTO(
 
     @Schema(description = "ID")
@@ -17,6 +20,7 @@ data class UserDetailsResponseDTO(
     val lastname: String,
 
     @Schema(description = "Отчество")
+    //@JsonInclude(Include.NON_NULL)
     val middlename: String?,
 
     @Schema(description = "Номер телефона")
@@ -35,5 +39,6 @@ data class UserDetailsResponseDTO(
     val active: Boolean,
 
     @Schema(description = "Дата удаления")
+    //@JsonInclude(Include.NON_NULL)
     val deletedAt: LocalDateTime?,
 )
