@@ -1,20 +1,17 @@
-datasource:
-  driverClassName: org.h2.Driver
-  url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
-  username: sa
-  password:
 jpa:
-  database-platform: org.hibernate.dialect.H2Dialect
-  hibernate.ddl-auto: create-drop # or update, depending on your needs
+  database-platform: org.hibernate.dialect.PostgreSQLDialect
+  hibernate.ddl-auto: create-drop # create-drop or update, depending on your needs
   show-sql: true
   properties.hibernate.format_sql: true
 spring:
-  h2:
-    console.enabled: true
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
 springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
-
