@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema
 import java.util.UUID
 
 @Schema(description = "Пользователь")
-data class MemberShortResponseDTO(
+data class UserShortResponseDTO(
     @Schema(description = "ID")
     val id: UUID,
     @Schema(description = "Имя")

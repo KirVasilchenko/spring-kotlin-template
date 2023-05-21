@@ -5,6 +5,6 @@ sealed class EntityNotFoundException(open val entity: String = "Entity"): Runtim
         get() = "${this.entity} not found"
 }
 
-class MemberNotFoundException(override val entity: String = "Member"): EntityNotFoundException() {
+class UserNotFoundException(override val entity: String = "User"): EntityNotFoundException() {
 
 }
