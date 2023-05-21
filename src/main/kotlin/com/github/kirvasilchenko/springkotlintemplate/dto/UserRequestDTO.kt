@@ -3,7 +3,7 @@ package com.github.kirvasilchenko.springkotlintemplate.dto
 import io.swagger.v3.oas.annotations.media.Schema
 
 @Schema(description = "Пользователь")
-data class MemberRequestDTO(
+data class UserRequestDTO(
     @Schema(description = "Имя")
     val firstname: String,
     @Schema(description = "Фамилия")

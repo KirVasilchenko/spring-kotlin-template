@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 @Schema(description = "Пользователь. Детальная информация")
-data class MemberDetailsResponseDTO(
+data class UserDetailsResponseDTO(
 
     @Schema(description = "ID")
     val id: UUID,

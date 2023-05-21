@@ -1,8 +1,3 @@
-jpa:
-  database-platform: org.hibernate.dialect.PostgreSQLDialect
-  hibernate.ddl-auto: create-drop # create-drop or update, depending on your needs
-  show-sql: true
-  properties.hibernate.format_sql: true
 spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
@@ -11,6 +6,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: password
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update # create-drop or update, depending on your needs
+    show-sql: true
+    properties.hibernate:
+      format_sql: true
+      default_schema: public
 springdoc:
   swagger-ui:
     enabled: true
