@@ -1,19 +1,15 @@
 package com.github.kirvasilchenko.springkotlintemplate.model
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 @Entity
-@Table(name = "member")
-data class Member(
+@Table(name = "user")
+data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     val id: UUID? = UUID.randomUUID(),
 
     @Column(name = "firstname", nullable = false)

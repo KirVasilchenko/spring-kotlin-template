@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.kirvasilchenko</groupId>
 	<artifactId>spring-kotlin-template</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>spring-kotlin-template</name>
 	<description>A template to build an API service with Kotlin, Spring Boot and a set of common libraries</description>
 	<properties>
@@ -19,6 +19,7 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<kotlin.version>1.8.21</kotlin.version>
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
+		<jackson.version>2.15.1</jackson.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -65,12 +66,22 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
-
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
