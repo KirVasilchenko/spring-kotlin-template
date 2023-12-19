@@ -4,7 +4,7 @@ import com.github.kirvasilchenko.springkotlintemplate.dto.UserDetailsResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.dto.UserRequestDTO
 import com.github.kirvasilchenko.springkotlintemplate.dto.UserShortResponseDTO
 import com.github.kirvasilchenko.springkotlintemplate.exception.UserNotFoundException
-import com.github.kirvasilchenko.springkotlintemplate.kafka.connector.KafkaTestConnector
+import com.github.kirvasilchenko.springkotlintemplate.kafka.producer.KafkaTestProducer
 import com.github.kirvasilchenko.springkotlintemplate.mapper.UserMapper
 import com.github.kirvasilchenko.springkotlintemplate.model.User
 import com.github.kirvasilchenko.springkotlintemplate.repository.UserRepository
@@ -19,7 +19,7 @@ import java.util.*
 class UserServiceImpl(
     private val userRepository: UserRepository,
     private val mapper: UserMapper,
-    private val connector: KafkaTestConnector
+    private val connector: KafkaTestProducer
 ) : UserService {
 
     override fun getAllUsers(): List<UserShortResponseDTO> {

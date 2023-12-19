@@ -1,15 +1,15 @@
-package com.github.kirvasilchenko.springkotlintemplate.kafka.connector.impl
+package com.github.kirvasilchenko.springkotlintemplate.kafka.producer.impl
 
-import com.github.kirvasilchenko.springkotlintemplate.kafka.connector.KafkaTestConnector
+import com.github.kirvasilchenko.springkotlintemplate.kafka.producer.KafkaTestProducer
 import lombok.RequiredArgsConstructor
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 
-@Service
+@Service("defaultKafkaTestProducer")
 @RequiredArgsConstructor
-class KafkaTestConnectorImpl(
+class KafkaTestProducerImpl(
     private val kafkaTemplate: KafkaTemplate<String, String>
-) : KafkaTestConnector {
+) : KafkaTestProducer {
 
     override fun sendMessage(message: String) {
         val future = kafkaTemplate.send("test", message)

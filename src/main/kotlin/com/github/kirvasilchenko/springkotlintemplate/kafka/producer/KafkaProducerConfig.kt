@@ -1,4 +1,4 @@
-package com.github.kirvasilchenko.springkotlintemplate.kafka
+package com.github.kirvasilchenko.springkotlintemplate.kafka.producer
 
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
